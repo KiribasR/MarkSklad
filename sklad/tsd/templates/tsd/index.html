@@ -1,0 +1,23 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+{% block head %}
+    <h1>Домашняя страница</h1>
+    
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+    <h4>Здесь будет отображаться список последних документов</h4>
+    <div class="developer">
+        <!--<div class="developer-atesco">
+            <div class="atesco-conteiner">
+                <img class="atesco-logo" src = "{% static 'main/img/atesco.png' %}" border-right="5px" ></img><h2>Разработано<br>специально для</h2>
+            </div>
+        </div>
+        <div class="putina-conteiner">
+            <img class="putina-logo" src="{% static 'main/img/Putina_logo_14.ico' %}"></img>
+        </div>-->
+    </div>  
+{% endblock %}

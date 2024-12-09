@@ -1,0 +1,28 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Pallet {% endblock %}
+{% block head %}
+    <div class="logo">  
+
+        <h1>Паллетирование</h1>
+    </div>
+
+{% endblock %}
+{% block content %}
+    <!--Здесь будет список линий-->
+    <div class="button-block">
+        <h4>Выберите линию для работы</h4>
+    </div>
+    {% for val in data %}
+        <div class="button-block">
+            <div class="btn-link-mini">
+                <a href = "{% url 'palletizing:orderLine' val %}" class="btn btn-info">
+                    {% for k, v in val.items %}
+                        <h5>{{ v }}</h5>
+                    {% endfor %}</a><br>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

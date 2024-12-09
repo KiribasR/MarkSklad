@@ -1,0 +1,30 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Order {% endblock %}
+{% block head %}
+    <div class="logo">  
+
+        <h1>Доступные задания на линии</h1><br>
+        <h1>{{ NameLine }}</h1>
+
+    </div>
+
+{% endblock %}
+{% block content %}
+    <!--Здесь будет список заданий-->
+    <div class="button-block">
+        <h4>Выберите задание </h4>
+    </div>
+    {% for k in Batch %}
+        <div class="button-block">
+            <div class="btn-link-mini">
+                <a href = "{% url 'palletizing:startPalleting' %}" class="btn btn-info">
+
+                        <h5>{{ k }}</h5>
+                </a><br>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
