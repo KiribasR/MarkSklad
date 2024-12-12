@@ -16,7 +16,7 @@ class DatabaseConn:
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         level=logging.INFO)"""
 
-    def __init__(self, database, server='localhost', username='serial', password='serial'):
+    def __init__(self, database, server='10.0.4.78', username='serial', password='serial'):
         """Инициализация атрибутов класса"""
         # self.list_km = []
         self.server = server  # 'localhost'  # localhost 192.168.250.100

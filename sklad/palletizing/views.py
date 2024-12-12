@@ -17,6 +17,7 @@ def loadLine():
     listDataLines = []
     listLines = queryDB.DatabaseConn('marking_db').querySelectFetchall(
         'SELECT * FROM serial.Lines', [])
+    print (listLines)
     #Проверка Сетевого статуса линии
     for line in listLines:
         line_ID = line[0]

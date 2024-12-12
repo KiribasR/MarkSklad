@@ -1,5 +1,387 @@
-.header{
-    display: flex;
-    padding: 1%;
+@font-face {
+  font-family: "MOSCOW2024";
+  font-style: normal;
+  font-weight: 400;
+
   
+  src: url("../fonts/MOSCOW2024.woff") format("woff")
+       
+       
+}
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+  (keys to remember is all of it is interactive elements)
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. I usually use ul li to have a list of elements and find the
+default padding is sometimes annoying to me
+*/
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  cursor: pointer;
+}
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+.header{
+  display: flex;
+  padding: 1%;
+
+}
+.logo{
+  display: flex;
+
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+  margin: 10px
+}
+
+/*  тело страницы*/
+body{
+  background-image: linear-gradient(
+    35deg,
+    hsl(240deg 72% 59%) 0%,
+    hsl(213deg 100% 48%) 4%,
+    hsl(207deg 100% 50%) 9%,
+    hsl(201deg 100% 49%) 16%,
+    hsl(194deg 100% 47%) 23%,
+    hsl(187deg 100% 45%) 33%,
+    hsl(181deg 65% 61%) 44%,
+    hsl(171deg 66% 63%) 57%,
+    hsl(158deg 66% 68%) 70%,
+    hsl(137deg 62% 73%) 81%,
+    hsl(102deg 62% 74%) 89%,
+    hsl(76deg 65% 70%) 95%,
+    hsl(55deg 73% 69%) 100%
+  );
+  display: flex; /*  делает элементы блочными*/
+  flex-direction: column; /* располагает блоки основного контента в колонку */
+  height: 100vh;
+}
+/*  нижнее блок для размещения в нем навигации*/
+
+/*основной контент  */
+.main-content{
+  min-height: 82vh; /*  вытягивает на всю высоту экрана*/
+}
+/* Заголовок страниц */
+.header-title h1{
+  float: left;
+  font-size: 60px;
+}
+/* Панель навигации */
+.bottom-nav { 
+  background-color: rgb(99,99,99);
+  display: flex; 
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  justify-content: space-around; 
+  align-items: center; 
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;
+  height: 8vh;
+  
+  
+}
+
+/* Стиль ссылок внутри панели навигации */
+.bottom-nav a {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  color: #f2f2f2;
+  text-align: center;
+  text-decoration: none;
+  font-size: 32px;
+  
+}
+
+/* Изменение цвета ссылок при наведении курсора в панели навегации */
+.bottom-nav a:hover {
+ 
+  color: black;
+}
+
+/* Добавить цвет для активной/текущей ссылки активируется скриптов в head */
+.bottom-nav a.active {
+  font-size: 35px;
+  color: #5983fc;
+}
+/* класс выравнивания по центру */
+.aligncenter img{
+  text-align: center;
+}
+
+/* размер иконок в навигации */
+ .icons{
+  width: 50px;
+  height: 50px;
+  align-self: center;
+ }
+
+/*  поле ввода на всех страницах*/
+.form-control {
+ max-width: 98%;
+ height: 5vh;
+ font-size: 30px;
+}
+
+/*  для теста*/
+.loger textarea {
+  min-width: 700px;
+  min-height: 400px;
+  
+}
+/*  таблица вывода результата*/
+.search-result{
+  font-size: 40px;
+}
+
+/*  стиль заголовков таблицы*/
+.table thead th{
+  background: rgb(99,99,99);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  color: #fff;
+}
+
+/* стиль строк в таблице */
+.table tbody td{
+  font-size: 45px;
+  font-weight: 500;
+  padding: 0;
+}
+
+/*  окрашивание статуса в красный в таблице*/
+.status-new{
+  margin: 0;
+  background-color: rgb(255, 66, 66);
+  color: white;
+  font-weight: 700;
+}
+
+/*  окрашивание статуса в зеленый в таблице*/
+.status-full{
+  margin: 0;
+  background-color: rgb(0, 175, 0);
+  color: white;
+  font-weight: 700;
+}
+/*  объединение ссылок в виде кнопок в группу */
+.button-block{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+/*  */
+.btn-link{
+  margin:20px;
+  vertical-align: center;
+
+  /*  стилизация ссылок под кнопки*/
+}
+.btn-link a{
+  height: 150px;
+  width: 450px;
+  font-size: 50px;
+  text-align: left;
+  color: white;
+  background-color: #1f9ce4;
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 25px;
+}
+
+/* стиль кнопок внутри сериализация.типография */
+.btn-link-mini{
+  margin:20px;
+  vertical-align: center;
+  
+/* стиль кнопок внутри сериализация.типография */ 
+}
+.btn-link-mini a{
+  height: 150px;
+  width: 96%;
+  font-size: 40px;
+  text-align: left;
+  background-image: url('../icons/scaner_grey.png');
+  color: white;
+  background-color: #2777f05e;
+  background-size: 68px 68px;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 20px;
+}
+/* стиль счетчика */
+.counter p{
+  display:flex;
+  height: 250px;
+  width: 95%;
+  border: solid 2px;
+  border-color: #2f1fe4;
+  border-radius: 15px;
+  padding: 10px 10px;
+  margin: 1%;
+  margin-top: 25px;
+  font-size: 60px;
+  font-weight: 700;
+  align-items: center;
+}
+
+.lcd-display{
+  font-family: 'MOSCOW2024';
+  font-size: 100px;
+  padding-left: 30px;
+}
+.lcd-display input{
+  text-align: right;
+  max-width: 350px;
+  border-radius: 25px;
+}
+
+.developer{
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25%;
+
+}
+.developer-atesco{
+  display: flex;
+  width: 100%;
+  align-content: center;
+  background-color: rgb(99,99,99);
+  
+}
+.atesco-conteiner{
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto
+}
+.atesco-conteiner h2{
+  font-size: 50px;
+ 
+  color: white;
+  margin-left: 30px;
+  margin-bottom: 0;
+  border-left: 5px;
+  border-color: #2f1fe4;
+}
+.atesco-logo {
+  width: 285px;
+  height:auto;
+  border-right: 5px;
+  border-color: #2f1fe4;
+}
+.putina-conteiner{
+  margin: 30px;
+}
+/* Общий стиль для всех сообщений */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid transparent;
+    border-radius: 10px; /* Скругление углов */
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    color: white;
+    opacity: 0.9; /* Полупрозрачность */
+    position: relative;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Анимация появления */
+}
+
+/* Стиль для успешных сообщений */
+.alert-success {
+    background-color: rgba(50, 205, 50, 0.8); /* Полупрозрачный зеленый */
+    border-color: rgba(34, 139, 34, 0.8); /* Темно-зеленая рамка */
+}
+
+/* Стиль для сообщений об ошибке */
+.alert-error {
+    background-color: rgba(255, 0, 0, 0.8); /* Полупрозрачный красный */
+    border-color: rgba(139, 0, 0, 0.8); /* Темно-красная рамка */
+}
+
+/* Кнопка закрытия сообщения */
+.alert .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 16pt;
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.alert .btn-close:hover {
+    color: #ccc; /* Светлый оттенок при наведении */
+}
+/* скрытие иконок при малом разрешении */
+@media screen and (max-width: 500px) {
+	.icons{
+		display: none;
+	}
+  .bottom-nav a {
+   
+    padding: 1px 1px;
+    text-decoration: none;
+    font-size: 38px;
   }
+  .loger textarea {
+    min-width: 90%;
+  }
+}
+
