@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action=""  method="post">
+        {% csrf_token %}<br>
+        {{ form.aggregateField }}<br>
+        <div class="counter" >
+            <p>Код паллета: <span class="lcd-display">{{ curPalletNumber }}</span></p>
+        </div>
+
+    </form>
+</body>
+</html>
