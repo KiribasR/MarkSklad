@@ -9,4 +9,6 @@ urlpatterns = [
     path('', views.mainPallet, name='mainPallet'),
     path('selectOrder/<str:arg>', views.selectLine, name='orderLine'),
     path('OrderBegin', views.startPalleting, name='startPalleting'),
+    path('palletField', views.addPalletNumber, name='palletField'),
+
 ]

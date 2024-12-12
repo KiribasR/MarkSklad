@@ -1,8 +1,8 @@
-from .models import PalletCode
+from .models import *
 from django.forms import ModelForm, TextInput
 
 
-class SearchForm(ModelForm):
+class PalletForm(ModelForm):
     class Meta:
         model = PalletCode
         fields = ['palletField']
@@ -11,5 +11,18 @@ class SearchForm(ModelForm):
             "palletField": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Код паллета'
+            })
+        }
+
+
+class AggregateForm(ModelForm):
+    class Meta:
+        model = AggregateCode
+        fields = ['aggregateField']
+
+        widgets = {
+            "aggregateField": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Отсканируйте код агрегата'
             })
         }

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from modules import queryDB, ping
 import re
+from .forms import *
 
 
 def mainPallet(request):
@@ -63,3 +64,21 @@ def splitLine(sting):
 def startPalleting(request):
     """Подтверждение начала паллета"""
     return render(request, 'palletizing/startPallet.html')
+
+
+def addPalletNumber(request):
+    """"""
+    if request.method == 'POST':
+        form = PalletForm(request.POST)
+        if form.is_valid():
+            print(request.POST)
+            curPalletNumber = request.POST['palletField']
+            return render(request, 'palletizing/fillingPallet.html', {'curPalletNumber': curPalletNumber})
+
+    else:
+        form = PalletForm()
+
+    data = {
+        'form': form,
+    }
+    return render(request, 'palletizing/palletNumberForm.html', data)
