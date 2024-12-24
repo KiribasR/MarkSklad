@@ -10,5 +10,5 @@ urlpatterns = [
     path('selectOrder/<str:arg>', views.selectLine, name='orderLine'),
     path('OrderBegin', views.startPalleting, name='startPalleting'),
     path('palletField', views.addPalletNumber, name='palletField'),
-
+    path('aggregateField', views.addAggregateNumber, name='aggregateField'),
 ]
