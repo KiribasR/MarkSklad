@@ -133,20 +133,21 @@ def newPalletSetting(request):
     """"""
     """Функция создает новую запись в таблице с заданием на паллет"""
     # createNewTask(arg)
+    print(request)
     print(PalletForm(request.POST))
     if request.method == 'POST':
-        form = AggregateForm(request.POST)
+        form = PalletForm(request.POST)
         if form.is_valid():
             #print(form)
             curPalletNumber = request.POST['palletField']
+            curTaskNumber = request.POST['taskField']
             initial_dict = {
                 "pallet": curPalletNumber,
-
+                "task": curTaskNumber
             }
             form = AggregateForm(initial=initial_dict)
-            # print(f'Это код агрегата - {request.POST["aggregateField"]}')
             checkFile(curPalletNumber)
-            return render(request, 'palletizing/fillingPallet.html', {'form': form, 'curPalletNumber': curPalletNumber})
+            return render(request, 'palletizing/fillingPallet.html', {'form': form})
 
     else:
 
@@ -201,18 +202,15 @@ def addAggregateNumber(request):
             print(request.POST.get('aggregateField'))
             curPalletNumber = request.POST.get('pallet')
             curAggregateNumber = request.POST.get('aggregateField')
+            curTaskNumber = request.POST.get('task')
             initial_dict = {
                 "pallet": curPalletNumber,
+                "task": curTaskNumber
             }
             form = AggregateForm(initial=initial_dict)
 
             #Вызов функции проверки и добавления кода агрегата в паллет
             saveAggregate(curAggregateNumber, curPalletNumber)
-            #curPalletNumber = request.POST['pallet']
-            #print(curPalletNumber)
-            #
-            #print(f'Это код агрегата - {request.POST["curPalletNumber"]}')
-            #checkFile(curAggregateNumber)
             return render(request, 'palletizing/fillingPallet.html', {'form': form})
 
     else:

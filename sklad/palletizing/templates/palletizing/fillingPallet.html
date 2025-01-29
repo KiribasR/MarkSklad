@@ -8,10 +8,11 @@
 
     <form action="{% url 'palletizing:aggregateField' %}"  method="post">
         {% csrf_token %}<br>
-
+        {{ form.task }}<br>
         {{ form.pallet }}<br>
         {{ form.aggregateField }}<br>
-
+        <a href = "{% url 'tsd:index' %}" class="btn btn-info">Завершить набор паллета</a><br>
+        <a href = "#" class="btn btn-info">Расформировать паллет</a>
     </form>
 </body>
 </html>
