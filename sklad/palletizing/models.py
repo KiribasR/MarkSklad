@@ -1,7 +1,21 @@
 from django.db import models
+from django import forms
+
+
+class PalletTask(models.Model):
+    taskField = models.CharField('Задание', max_length=30)
+
+    def __str__(self):
+        return self.taskField
+
+    class Meta:
+        verbose_name = 'Номер задания'
+        verbose_name_plural = 'Номера заданий'
+
 
 class PalletCode(models.Model):
     palletField = models.CharField('Код паллета', max_length=30)
+    taskField = models.CharField('Код паллета', max_length=50, blank=True)
 
     def __str__(self):
         return self.palletField
@@ -13,6 +27,8 @@ class PalletCode(models.Model):
 
 class AggregateCode(models.Model):
     aggregateField = models.CharField('Код агрегата', max_length=50)
+    pallet = models.CharField('Код паллета', max_length=50, blank=True)
+    task = models.CharField('Код паллета', max_length=50, blank=True)
 
     def __str__(self):
         return self.aggregateField
