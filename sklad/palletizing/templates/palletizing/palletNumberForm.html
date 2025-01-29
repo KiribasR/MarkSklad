@@ -10,11 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    
-    <form action="palletField"  method="post">
+
+
+    <form action="{% url 'palletizing:newPalletField' %}"  method="post">
         {% csrf_token %}<br>
+        {{ form.taskField }}<br>
         {{ form.palletField }}<br>
         <h4>здесь надо поставить картинку линейного кода со сканером</h4>
+        <a href = "{% url 'tsd:index' %}" class="btn btn-info">Завершить задание {{ task }}</a>
     </form>
 
 {% endblock %}

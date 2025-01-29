@@ -5,19 +5,13 @@
     <title>creatingPallet</title>
 </head>
 <body>
-    <form action="aggregateField"  method="post">
+
+    <form action="{% url 'palletizing:aggregateField' %}"  method="post">
         {% csrf_token %}<br>
 
-        <div class="counter" >
-            <p>Код паллета: <span class="lcd-display">{{ curPalletNumber }}</span></p>
-        </div>
+        {{ form.pallet }}<br>
         {{ form.aggregateField }}<br>
-        <a href="{% url 'palletizing:palletField' %}" class="btn btn-warning">Закончить набор</a>
-        <div class="list">
-            {% for value in listData %}
-                <p>{{ value }}</p>
-            {% endfor %}
-        </div>
+
     </form>
 </body>
 </html>
