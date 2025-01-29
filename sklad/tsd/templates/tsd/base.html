@@ -11,10 +11,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'main/css/tsd.css' %}">
 	<!--<link rel="icon"href="{% static 'main/icons/favicon.ico' %}">-->
-    
-    
-    
-    
+
 </head>
 <body>
     <header class="header"> <!-- Тут должна быть лого "АТЭСКО" и название страницы в 1 строку-->
@@ -24,12 +21,13 @@
         </div> 
     </header>
     <hr>
+    <main>
     {% csrf_token %}
 
     <!-- Основной контент подставляемый в шаблон-->
     {% block content %}
     {% endblock %}
-    
+    </main>
 
 <!-- футер с навигацией по страницам в одну строку-->
 <footer>
@@ -40,8 +38,6 @@
             <a href="{% url 'palletizing:mainPallet' %}"><img class="icons" src="{% static 'main/icons/db_insert.png' %}">Паллетирование</a>
             <a href="#edit"><img class="icons" src="{% static 'main/icons/agregate.png' %}">Редактирование</a>
 
-
-            
         </nav>
     </div>
 </footer>
