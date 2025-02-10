@@ -11,13 +11,16 @@
 
 {% block content %}
 
-
+    <h5>Добавить всплывающее окно если код не найден или уже в работе</h5>
     <form action="{% url 'palletizing:newPalletField' %}"  method="post">
         {% csrf_token %}<br>
         {{ form.taskField }}<br>
         {{ form.palletField }}<br>
         <h4>здесь надо поставить картинку линейного кода со сканером</h4>
-        <a href = "{% url 'tsd:index' %}" class="btn btn-info">Завершить задание {{ task }}</a>
+
+        <button type="submit" name="confirm">Подтвердить паллет</button>
+        <br>
+        <button type="submit" name="complete">Завершить задание</button>
     </form>
 
 {% endblock %}

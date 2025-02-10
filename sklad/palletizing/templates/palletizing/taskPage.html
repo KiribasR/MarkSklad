@@ -17,7 +17,7 @@
     <form  action="{% url 'palletizing:palletField' %}" method="post">
         {% csrf_token %}<br>
         {{ form.taskField }}<br>
-        <input type="submit" name="Submit"/>
+        <button type="submit" name="create">Создать</button>
     </form>
 
 
@@ -26,8 +26,9 @@
         <h4>Последние созданные задания </h4>
     </div>
     {% for k in Batch %}
+
         <div class="button-block">
-            <a href = "{% url 'palletizing:startPalleting' %}" class="btn btn-info">
+            <a href = "{% url 'palletizing:startPalleting' k %}" class="btn btn-info">
                 <h5>{{ k }}</h5>
                 <h5>Возможно добавим наименование продукта</h5>
             </a><br>

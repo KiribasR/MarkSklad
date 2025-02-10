@@ -14,7 +14,7 @@ class PalletTask(models.Model):
 
 
 class PalletCode(models.Model):
-    palletField = models.CharField('Код паллета', max_length=40)
+    palletField = models.CharField('Код паллета', max_length=30)
     taskField = models.CharField('Код паллета', max_length=50, blank=True)
     curPallet = models.CharField('Код паллета', max_length=50, blank=True)
 

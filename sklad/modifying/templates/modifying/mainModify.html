@@ -1,0 +1,21 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Modify {% endblock %}
+{% block head %}
+    <div class="logo">  
+
+        <h1>Редактирование</h1>
+    </div>
+
+{% endblock %}
+{% block content %}
+
+    <h4>Отсканируйте код паллета для редактирования</h4>
+    <form action="{% url 'modifying:select' %}"  method="post">
+        {% csrf_token %}<br>
+        {{ form.palletField }}<br>
+        <h4>здесь надо поставить картинку линейного кода со сканером</h4>
+    </form>
+
+{% endblock %}

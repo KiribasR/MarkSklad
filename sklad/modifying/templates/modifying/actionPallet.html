@@ -1,0 +1,25 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Modify {% endblock %}
+{% block head %}
+    <div class="logo">  
+
+        <h1>Выбор действия</h1>
+    </div>
+
+{% endblock %}
+{% block content %}
+
+    <h4>Отсканируйте код паллета для редактирования</h4>
+    <form action="{% url 'modifying:action' %}"  method="post">
+        {% csrf_token %}<br>
+        {{ form.pallet }}<br>
+        {{ form.task }}<br>
+        <button type="submit" name="disband">Расформировать паллет полностью</button>
+        <br>
+        <button type="submit" name="resume">Расформировать паллет частично</button>
+        <br>
+    </form>
+
+{% endblock %}

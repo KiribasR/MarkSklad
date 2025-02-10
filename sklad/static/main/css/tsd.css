@@ -1,4 +1,38 @@
+/* Стили для всплывающего окна */
+.popup {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Остается на месте при прокрутке */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    z-index: 1000; /* Убедитесь, что окно поверх других элементов */
+}
 
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto; /* Центрирование окна */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f00;
+}
+/* Стили для всплывающего окна конец */
 @font-face {
   font-family: "MOSCOW2024";
   font-style: normal;
@@ -88,28 +122,30 @@ ul li {
 /*  тело страницы*/
 body{
   background-image: linear-gradient(
-    45deg,
-    hsl(198deg 41% 25%) 0%,
-    hsl(199deg 32% 32%) 14%,
-    hsl(199deg 25% 40%) 29%,
-    hsl(195deg 22% 48%) 43%,
-    hsl(193deg 23% 56%) 57%,
-    hsl(193deg 29% 64%) 71%,
-    hsl(193deg 39% 73%) 86%,
-    hsl(192deg 56% 81%) 100%
+    35deg,
+    hsl(240deg 72% 59%) 0%,
+    hsl(213deg 100% 48%) 4%,
+    hsl(207deg 100% 50%) 9%,
+    hsl(201deg 100% 49%) 16%,
+    hsl(194deg 100% 47%) 23%,
+    hsl(187deg 100% 45%) 33%,
+    hsl(181deg 65% 61%) 44%,
+    hsl(171deg 66% 63%) 57%,
+    hsl(158deg 66% 68%) 70%,
+    hsl(137deg 62% 73%) 81%,
+    hsl(102deg 62% 74%) 89%,
+    hsl(76deg 65% 70%) 95%,
+    hsl(55deg 73% 69%) 100%
   );
-  /* располагает блоки основного контента в колонку */
-  
+  display: flex; /*  делает элементы блочными*/
+  flex-direction: column; /* располагает блоки основного контента в колонку */
+  height: 100vh;
 }
 /*  нижнее блок для размещения в нем навигации*/
 
 /*основной контент  */
-main{
-  min-height: 82vh;
-  display: flex; /*  делает элементы блочными*/
-  flex-grow: 1;
-  flex-direction: column; 
-  margin-bottom: 8vh;/*  вытягивает на всю высоту экрана*/
+.main-content{
+  min-height: 82vh; /*  вытягивает на всю высоту экрана*/
 }
 /* Заголовок страниц */
 .header-title h1{
@@ -174,7 +210,12 @@ main{
  font-size: 30px;
 }
 
-
+/*  для теста*/
+.loger textarea {
+  min-width: 700px;
+  min-height: 400px;
+  
+}
 /*  таблица вывода результата*/
 .search-result{
   font-size: 40px;
@@ -237,17 +278,16 @@ main{
   border-radius: 25px;
 }
 
-/* стиль кнопок выбора линии */
+/* стиль кнопок внутри сериализация.типография */
 .btn-link-mini{
   margin:20px;
   vertical-align: center;
   
-  
-/* стиль кнопок выбора линии */ 
+/* стиль кнопок внутри сериализация.типография */ 
 }
 .btn-link-mini a{
-  height: 400px;
-  width: 76%;
+  height: 150px;
+  width: 96%;
   font-size: 40px;
   text-align: left;
   background-image: url('../icons/scaner_grey.png');
@@ -257,41 +297,6 @@ main{
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 20px;
-  
-}
-.btn-link-mini h5{
-  font-size: 40px;
-}
-/* зеленый статус внутри кнопки */ 
-.green{
-  height: 60px;
-  width: 250px;
-  font-size: 40px;
-  text-align: center;
-  color: white;
-  background-color: #27f067cd;
-  margin-top: 20px;
-  border-radius: 25px;
-}
-/* красный статус внутри кнопки */ 
-.red{
-  height: 60px;
-  width: 250px;
-  font-size: 40px;
-  text-align: center;
-  color: white;
-  background-color: #f02727cd;
-  margin-top: 20px;
-  border-radius: 25px;
- 
-}
-/* наименования полей внутри кнопки */ 
-.field_name{
-  font-size: 30px;
-  color: rgb(99, 99, 99);
-}
-.btn-link-mini p{
-  margin: 0%;
 }
 /* стиль счетчика */
 .counter p{
@@ -319,7 +324,7 @@ main{
   max-width: 350px;
   border-radius: 25px;
 }
-/* блок "разработано специально для..." */
+
 .developer{
   display: flex;
   max-width: 100%;
@@ -399,9 +404,6 @@ main{
 .alert .btn-close:hover {
     color: #ccc; /* Светлый оттенок при наведении */
 }
-
-
-
 /* скрытие иконок при малом разрешении */
 @media screen and (max-width: 500px) {
 	.icons{
