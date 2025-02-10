@@ -62,7 +62,7 @@ SECRET_KEY = 'django-insecure-%qa+0l1f$g-)wm@6fab-*051(w+ll)u-=@ol9#3(b+654e5u8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78', '192.168.1.48']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78', '192.168.1.48', '10.0.4.80']
 ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.80']
 
 
@@ -122,7 +122,7 @@ DATABASES = {
         "NAME": "marking_db",
         "USER": "serial",
         "PASSWORD": "serial",
-        "HOST": "localhost",  #'192.168.1.48' #10.0.4.78"
+        "HOST": "10.0.4.78",  #'192.168.1.48' #10.0.4.78"
         "PORT": "1433",
         "OPTIONS": {'host_is_server': True,
                     },

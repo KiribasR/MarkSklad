@@ -209,7 +209,7 @@ def checkNewPalletCode(newPalletCode):
 
 def createNewPallet(curTaskNumber, newPalletNumber):
     """ Create new pallet number in file"""
-    with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'r') as file:
+    with open(f'sklad\palletFiles\\{curTaskNumber}.json', 'r') as file:
         jsonFile = file.read()
 
     if len(jsonFile):
@@ -217,10 +217,10 @@ def createNewPallet(curTaskNumber, newPalletNumber):
         print(dictFile)
         dictFile[newPalletNumber] = []
 
-        with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
+        with open(f'sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
             json.dump(dictFile, file)
     else:
-        with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
+        with open(f'sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
             json.dump({newPalletNumber: []}, file)
 
 
@@ -256,7 +256,7 @@ def createNewTask(newTask):
 def checkFile(curTaskNumber):
     """Проверка существоания файла"""
     print(f'получен новый номер задания: {curTaskNumber}')
-    fileExist = os.path.isfile(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json')
+    fileExist = os.path.isfile(f'sklad\palletFiles\\{curTaskNumber}.json')
     if fileExist:
         print('файл существует')
         pass
@@ -267,7 +267,7 @@ def checkFile(curTaskNumber):
 
 def createPalletFile(curTaskNumber):
     """Создание нового файла паллета"""
-    newFile = open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'w')
+    newFile = open(f'sklad\palletFiles\\{curTaskNumber}.json', 'w')
     #newFile.write('номер паллета,номер маркировки, марка, дата паллетирования\n')
     newFile.close
 
@@ -339,11 +339,11 @@ def loadCodeInPallet(palletNumber, taskNumber):
     """Выгрузка кодов агрегата в паллете
     для отображения на странице
     (Возможно для счетчика) """
-    fileExist = os.path.isfile(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{taskNumber}.json')
+    fileExist = os.path.isfile(f'sklad\palletFiles\\{taskNumber}.json')
     if fileExist:
         print(f'файл с номером {taskNumber} существует')
 
-        with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{taskNumber}.json', 'r') as file:
+        with open(f'sklad\palletFiles\\{taskNumber}.json', 'r') as file:
             jsonFile = file.read()
 
         dictFile = json.loads(jsonFile)
@@ -413,7 +413,7 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         добавляет новый аггрегат в файл"""
     print(f'Это код агрегата - {aggregeteNumber}')
     print(f'Это номер паллета - {palletNumber}')
-    fileExist = os.path.isfile(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json')
+    fileExist = os.path.isfile(f'sklad\palletFiles\\{curTaskNumber}.json')
     print(fileExist)
 
     if fileExist:
@@ -422,7 +422,7 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         # Присваевания коду агрегата номера паллета и номера задания
         aggregateInDB(curTaskNumber, palletNumber, aggregeteNumber)
 
-        with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'r') as file:
+        with open(f'sklad\palletFiles\\{curTaskNumber}.json', 'r') as file:
             jsonFile = file.read()
 
         dictFile = json.loads(jsonFile)
@@ -430,7 +430,7 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         dictFile[palletNumber].append(aggregeteNumber)
         print(dictFile)
 
-        with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
+        with open(f'sklad\palletFiles\\{curTaskNumber}.json', 'w') as file:
             json.dump(dictFile, file)
 
 
@@ -501,6 +501,6 @@ def checkAggregateCode(aggregateNumber, palletNumber):
     print(f'Это номер паллета - {palletNumber}')
 
     #Чтение файла
-    with open(f'D:\PythonProject\MarkSklad\sklad\palletFiles\\{palletNumber}.csv', 'a') as f:
+    with open(f'sklad\palletFiles\\{palletNumber}.csv', 'a') as f:
         f.write(aggregateNumber+'\n')
 
