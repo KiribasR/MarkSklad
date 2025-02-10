@@ -1,0 +1,24 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} PalletizingField {% endblock %}
+
+{% block head %}
+
+    <div class="logo">
+        <h1>Подтвердите номер паллета</h1>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'palletizing:closePallet' %}"  method="post">
+        {% csrf_token %}<br>
+        {{ form.taskField }}<br>
+        {{ form.curPallet }}<br>
+        {{ form.palletField }}<br>
+        <h4>здесь надо поставить картинку линейного кода со сканером</h4>
+    </form>
+
+{% endblock %}

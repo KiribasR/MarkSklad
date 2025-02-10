@@ -5,14 +5,26 @@
     <title>creatingPallet</title>
 </head>
 <body>
-
+    <h5>Добавить всплывающее окно если код не найден или неполный</h5>
+    <h5>Старница просто обновляется без записи</h5><br>
     <form action="{% url 'palletizing:aggregateField' %}"  method="post">
         {% csrf_token %}<br>
         {{ form.task }}<br>
         {{ form.pallet }}<br>
         {{ form.aggregateField }}<br>
-        <a href = "{% url 'tsd:index' %}" class="btn btn-info">Завершить набор паллета</a><br>
-        <a href = "#" class="btn btn-info">Расформировать паллет</a>
+
+        <ol>
+            {% for i in code|slice:"::-1" %}
+               <li>{{ i }}</li>
+            {% endfor %}
+        </ol>
+
+
+        <button type="submit" name="write">Записать</button>
+        <br>
+        <button type="submit" name="complete">Завершить паллет</button>
+        <br>
+        <button type="submit" name="disband">Расформировать паллет</button>
     </form>
 </body>
 </html>

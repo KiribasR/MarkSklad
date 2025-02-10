@@ -11,9 +11,46 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+
+
+#########################
+
+
+PWA_APP_NAME = 'Маркировка'
+PWA_APP_DESCRIPTION = "GeeksForGeeks PWA"
+PWA_APP_THEME_COLOR = '#000000'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        #'src': '../static/images/icon-160x160.png',
+        #'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        #'src': '../static/images/icon-160x160.png',
+        #'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        #'src': 'static/images/icon.png',
+        #'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
+#########################
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +62,7 @@ SECRET_KEY = 'django-insecure-%qa+0l1f$g-)wm@6fab-*051(w+ll)u-=@ol9#3(b+654e5u8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78', '192.168.1.48']
 
 
 # Application definition
@@ -37,9 +74,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pwa',
 
     'tsd',
     'palletizing',
+    'modifying',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +121,7 @@ DATABASES = {
         "NAME": "marking_db",
         "USER": "serial",
         "PASSWORD": "serial",
-        "HOST": "10.0.4.78",
+        "HOST": "localhost",  #'192.168.1.48' #10.0.4.78"
         "PORT": "1433",
         "OPTIONS": {'host_is_server': True,
                     },

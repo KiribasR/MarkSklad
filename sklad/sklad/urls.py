@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tsd.urls', namespace='tsd')),
     path('palletizing/', include('palletizing.urls', namespace='pallet')),
+    path('modifying/', include('modifying.urls', namespace='modify')),
+    path('', include('pwa.urls')),
 ]

@@ -1,4 +1,38 @@
+/* Стили для всплывающего окна */
+.popup {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Остается на месте при прокрутке */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    z-index: 1000; /* Убедитесь, что окно поверх других элементов */
+}
 
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto; /* Центрирование окна */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f00;
+}
+/* Стили для всплывающего окна конец */
 @font-face {
   font-family: "MOSCOW2024";
   font-style: normal;
