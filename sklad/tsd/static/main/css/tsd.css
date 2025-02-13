@@ -75,6 +75,11 @@ ul li {
   padding: 1%;
 
 }
+
+.logo_head h1{
+  color: rgb(46, 96, 121);
+
+}
 .logo{
   display: flex;
 
@@ -128,8 +133,7 @@ main{
   bottom: 0; 
   width: 100%;
   height: 8vh;
-  
-  
+    
 }
 
 /* Стиль ссылок внутри панели навигации */
@@ -294,12 +298,19 @@ main{
   margin: 0%;
 }
 /* стиль счетчика */
+.counter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30%;
+  
+}
 .counter p{
   display:flex;
   height: 250px;
   width: 95%;
   border: solid 2px;
-  border-color: #2f1fe4;
+  border-color: #0c78d7;
   border-radius: 15px;
   padding: 10px 10px;
   margin: 1%;
@@ -307,12 +318,15 @@ main{
   font-size: 60px;
   font-weight: 700;
   align-items: center;
+  justify-content: center
 }
 
 .lcd-display{
   font-family: 'MOSCOW2024';
   font-size: 100px;
   padding-left: 30px;
+  
+  align-items: center;
 }
 .lcd-display input{
   text-align: right;
@@ -400,8 +414,180 @@ main{
     color: #ccc; /* Светлый оттенок при наведении */
 }
 
+/* рамка вокруг формы создания задания на палетирование */
+.task_create_frm{
+  height: 230px;
+  width: 95%;
+  
+  background-image: url('../icons/new_file.png');
+  
+  background-color: #63c4f56b;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 30px;
+  margin:20px;
+  padding-left: 25px;
+  
+
+}
+.text_area_task_create textarea{
+  max-width: 80%;
+  font-size: 40px;
+  color:#1f7be4;
+  font-weight: 700;
+  border-radius: 20px;
+  padding-left: 10px;
+}
 
 
+.hide_text_area textarea{
+  max-width: 80%;
+  font-size: 40px;
+  color:#1f7be4;
+  font-weight: 700;
+  border-radius: 20px;
+  padding-left: 10px;
+  background-color: transparent;
+  border: none;
+
+}
+.btn-primary{
+  font-size: 40px;
+  border-radius: 20px;
+  background-image: url('../icons/check.png');
+  background-size: 50px 50px;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-left: 50px;
+}
+
+.btn-light{
+  font-size: 40px;
+  border-radius: 15px;
+  background-color: #1f9ce4;
+
+}
+.btn-light h5{
+  font-size: 32px;
+  font-weight: 700;
+}
+.btn-light h4{
+  font-size: 24px;
+  
+}
+.par_1{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  padding-left: 5px;
+}
+.par_2{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  padding-left: 25px;
+}
+.par_3{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(193, 95, 95);
+  padding-left: 25px;
+}
+
+.hide_btn{
+  background-color: transparent;
+  border: none;
+}
+
+.empty{
+  padding-left: 25px;
+}
+
+.submit_btn{
+  background-color: #1f7be4;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  padding: 25px;
+}
+.btn_block_row{
+  display: flex; 
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;
+  padding: 15px;
+
+}
+.complete_btn{
+  background-color: rgb(25, 192, 84);
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  margin: 25px;
+  width: 100%;
+}
+
+.cancel_btn{
+  background-color: #e4461f;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  margin: 25px;
+}
+
+.kitu_list{
+  padding-left: 25px;
+  font-size: 24px;
+  font-weight: 700;
+}
+ol {
+  
+  padding: 0;
+  margin: 0;
+  
+  width: 100%;
+  max-width: 600px;
+ 
+}
+
+/* Стили для элементов списка */
+ol li {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Чередование цвета фона */
+ol li:nth-child(odd) {
+  background-color: #f9f9f97d; /* Цвет для нечетных строк */
+}
+
+ol li:nth-child(even) {
+  background-color: #e9e9e978; /* Цвет для четных строк */
+}
+
+/* Убираем границу у последнего элемента */
+ol li:last-child {
+  border-bottom: none;
+}
+.main_head{
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+}
+.main_head_left{
+  max-width: 70%;
+}
 /* скрытие иконок при малом разрешении */
 @media screen and (max-width: 500px) {
 	.icons{
