@@ -248,7 +248,6 @@ def searchAggNumber(searchData):
         updated = data[0][2].strftime('%d.%m.%Y %H:%M:%S'),
     else:
         updated = '-'
-    
     if data[0][5] == None:
         pallet_number = '-'
     else:

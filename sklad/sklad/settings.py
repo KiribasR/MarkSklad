@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'tsd',
     'palletizing',
     'modifying',
+    'search',
 ]
 
 MIDDLEWARE = [

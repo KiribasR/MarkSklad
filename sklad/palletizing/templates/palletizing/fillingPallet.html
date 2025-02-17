@@ -63,7 +63,27 @@
                 <p class="lcd-display">{{ counter }}</p>
             </div>
         </div>
+        {% csrf_token %}
+        <div class="main_head"> 
+            <div class="main_head_left">
+                <h4 class="par_2">Открыт документ №</h4>
+                <div class="hide_text_area">{{ form.task }}<br></div>
+                <hr>
+                <h4 class="par_2">Укладка паллета №</h4>
+                <div class="hide_text_area">{{ form.pallet }}<br></div>
+            </div>
+            <div class="counter">
+                <p class="lcd-display">{{ counter }}</p>
+            </div>
+        </div>
         {{ form.aggregateField }}<br>
+        <div class="kitu_list">
+            <ol>
+                {% for i in code|slice:"::-1" %}
+                <li>{{ i }}</li>
+                {% endfor %}
+            </ol>
+        </div>
         <div class="kitu_list">
             <ol>
                 {% for i in code|slice:"::-1" %}
@@ -74,6 +94,10 @@
 
         <button type="submit" name="write" class="hide_btn"></button>
         <br>
+        <div class="btn_block_row">
+            <button type="submit" name="complete" class="complete_btn">Завершить<br /> паллет</button>
+        
+            <button type="submit" name="disband" class="cancel_btn">Расформировать<br /> паллет</button></div>
         <div class="btn_block_row">
             <button type="submit" name="complete" class="complete_btn">Завершить<br /> паллет</button>
         

@@ -51,9 +51,8 @@ def selectLine(request, arg):
     IDLine = arg_to_dict.get('ID')
     IPLine = queryDB.DatabaseConn('marking_db').querySelectFetchone(
         'SELECT IP FROM serial.Lines where ID =?', IDLine)
-    
+
     dictOrder = {}
-    
     # Запрос доступных заданий на выбранной линии
     listOrderOnLine = queryDB.DatabaseConn('MARKING_DB').querySelectFetchone(
         'SELECT uuid FROM serial.exchange_palletes where lineID = ?', IDLine)
@@ -73,7 +72,10 @@ def selectLine(request, arg):
     form = PalletTaskForm(initial=initial_dict)
 
     # Переход на страницу с заданиями паллетов
-    return render(request, 'palletizing/taskPage.html', {'form': form, 'NameLine': NameLine, 'task': newTask, 'Batch': dictOrder})
+    return render(request, 'palletizing/taskPage.html', {'form': form,
+                                                         'NameLine': NameLine,
+                                                         'task': newTask,
+                                                         'Batch': dictOrder})
 
 
 def split_task_for_incriment(listTaskInLine, IDLine):
@@ -152,13 +154,13 @@ def newPalletSetting(request):
             if form.is_valid():
                 curPalletNumber = request.POST['palletField']
                 curTaskNumber = request.POST['taskField']
-                
+
                 # Проверяем паллет на соотвествие условиям
                 # Палет должен быть новым или не завершенным.
                 # Палет должен принадлежать заданию
                 resolutionStatus = checkNewPalletCode(curPalletNumber, curTaskNumber)
                 print(resolutionStatus)
-                
+
                 if resolutionStatus['resolution']:
                     initial_dict = {
                         "pallet": curPalletNumber,
@@ -166,6 +168,8 @@ def newPalletSetting(request):
                     }
                     form = AggregateForm(initial=initial_dict)
                     createNewPallet(curTaskNumber, curPalletNumber)
+                    listAggCode = loadCodeInPallet(curPalletNumber, curTaskNumber)
+                    counter = len(set(listAggCode))
                     listAggCode = loadCodeInPallet(curPalletNumber, curTaskNumber)
                     counter = len(set(listAggCode))
                     # Update status pallet
@@ -192,15 +196,6 @@ def newPalletSetting(request):
 
             return render(request, 'tsd/index.html')
 
-    """else:
-
-        form = AggregateForm()
-
-    data = {
-        'form': form,
-    }
-    return render(request, 'palletizing/palletNumberForm.html', data)"""
-
 
 def upadteStatusTask(curTaskNumber, status):
     """При сканировании кода паллета меняется статус задания
@@ -212,9 +207,10 @@ def upadteStatusTask(curTaskNumber, status):
 def checkNewPalletCode(newPalletCode, curTaskNumber):
     """Проверка статуса кода палета"""
     resolutionDict = {'resolution': False, 'msg': ''}
-
+    print()
     statusPalletCode = queryDB.DatabaseConn('marking_db').querySelectFetchall(
         'SELECT status, task FROM serial.pallet_codes where code = ?', newPalletCode)
+    print(statusPalletCode)
     try:
         taskInDB = statusPalletCode[0][1]
         statusPallet = statusPalletCode[0][0]
@@ -243,10 +239,10 @@ def checkNewPalletCode(newPalletCode, curTaskNumber):
         return resolutionDict
 
 
-
 def createNewPallet(curTaskNumber, newPalletNumber):
     """ Create new pallet number in file"""
     joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
+
     with open(joined_path, 'r') as file:
         jsonFile = file.read()
 
@@ -259,8 +255,15 @@ def createNewPallet(curTaskNumber, newPalletNumber):
         else:
             dictFile[newPalletNumber] = []
         with open(joined_path, 'w') as file:
+        if newPalletNumber in dictFile:
+            #dictFile[newPalletNumber] = []
+            print(dictFile[newPalletNumber])
+        else:
+            dictFile[newPalletNumber] = []
+        with open(joined_path, 'w') as file:
             json.dump(dictFile, file)
     else:
+        with open(joined_path, 'w') as file:
         with open(joined_path, 'w') as file:
             json.dump({newPalletNumber: []}, file)
 
@@ -298,6 +301,7 @@ def checkFile(curTaskNumber):
     """Проверка существоания файла"""
     joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
     print(f'получен новый номер задания: {curTaskNumber}')
+    joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
     fileExist = os.path.isfile(joined_path)
     if fileExist:
         print('файл существует')
@@ -311,7 +315,10 @@ def createPalletFile(curTaskNumber):
     """Создание нового файла паллета"""
     joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
     newFile = open(joined_path, 'w')
+    joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
+    newFile = open(joined_path, 'w')
     #newFile.write('номер паллета,номер маркировки, марка, дата паллетирования\n')
+    newFile.close()
     newFile.close()
 
 
@@ -330,8 +337,9 @@ def addAggregateNumber(request):
                 "curPallet": curPalletNumber
             }
             print(curTaskNumber)
+            counter = countAggInPallet(curPalletNumber)
             form = PalletForm(initial=initial_dict)
-            return render(request, 'palletizing/confirmPallet.html', {'form': form})
+            return render(request, 'palletizing/confirmPallet.html', {'form': form, 'counter': counter})
     elif 'disband' in request.POST:
         print('разрушаем')
         if request.method == 'POST':
@@ -355,6 +363,7 @@ def addAggregateNumber(request):
                 curPalletNumber = request.POST.get('pallet')
                 curAggregateNumber = request.POST.get('aggregateField')
 
+                # Проверка GTIN агрегата и присваевание наименования заданию
                 initial_dict = {
                     "pallet": curPalletNumber,
                     "task": curTaskNumber
@@ -362,9 +371,11 @@ def addAggregateNumber(request):
                 form = AggregateForm(initial=initial_dict)
 
 
+
                 
                 # Вызов функции проверки кода агрегата на линии
                 resolution = checkAggreageteCode(curTaskNumber, curAggregateNumber)
+                if resolution['resolution']:
                 if resolution['resolution']:
                     # Добавляем код агрегата в паллет
                     saveAggregate(curAggregateNumber, curPalletNumber, curTaskNumber)
@@ -378,22 +389,42 @@ def addAggregateNumber(request):
                 else:
                     listAggCode = loadCodeInPallet(curPalletNumber, curTaskNumber)
                     counter = len(set(listAggCode))
-                    messages.error(request, resolution['msg'])
+                    print(f'Код добавляем')
+                    print(resolution['msg'])
+                    return render(request, 'palletizing/fillingPallet.html', {'form': form, 'code': listAggCode, 'counter': counter})
+                else:
+                    listAggCode = loadCodeInPallet(curPalletNumber, curTaskNumber)
+                    counter = len(set(listAggCode))
+                    print(resolution['msg'])
                     print(f'Код не является агрегатом. всплываюшее окно')
                     return render(request, 'palletizing/fillingPallet.html', {'form': form, 'code': listAggCode, 'counter': counter})
 
+
+def countAggInPallet(curPalletNumber):
+    """Выгрузка количества кодов агрегата в паллете"""
+    count = queryDB.DatabaseConn('marking_db').querySelectFetchone(
+        'SELECT count(code) FROM serial.group_codes WHERE pallet_number = ?', curPalletNumber)
+    return count
+
+'''def checkAggregateGTIN(curTaskNumber, curAggregateNumber):
+    """Проверка и присваивание gtin заданию"""
+
+    GTIN = queryDB.DatabaseConn('marking_db').querySelectFetchone(
+        'SELECT gtin FROM serial.group_codes WHERE code = ?', curAggregateNumber)
+    orderGTIN = queryDB.DatabaseConn('marking_db').querySelectFetchone(
+        'SELECT gtin FROM serial.exchenge_palletes WHERE uuid = ?', curTaskNumber)'''
 
 
 def loadCodeInPallet(palletNumber, taskNumber):
     """Выгрузка кодов агрегата в паллете
     для отображения на странице
     (Возможно для счетчика) """
-    
     joined_path = os.path.join('palletFiles', f'{taskNumber}.json')
     fileExist = os.path.isfile(joined_path)
     if fileExist:
         print(f'файл с номером {taskNumber} существует')
 
+        with open(joined_path, 'r') as file:
         with open(joined_path, 'r') as file:
             jsonFile = file.read()
 
@@ -406,8 +437,6 @@ def loadCodeInPallet(palletNumber, taskNumber):
             print(f'Ошибка при чтении файла: {err}')
             dictFile[palletNumber] = []
             return dictFile[palletNumber]
-
-
 
     else:
         # print(f'файл с номером {palletNumber} не существует')
@@ -440,7 +469,7 @@ def checkAggreageteCode(curTaskNumber, curAggregateNumber):
     Если код агрегата считан, добавляем к списку для записи в БД
     Если код агрегата не считан, то переводим на страницу пополнения кода агрегата"""
     resolutionDict = {'resolution': False, 'msg': ''}
-    
+
     curLineNumber = curTaskNumber[1:3]
     print(int(curLineNumber))
     ipLine = queryDB.DatabaseConn('marking_db').querySelectFetchone(
@@ -454,16 +483,21 @@ def checkAggreageteCode(curTaskNumber, curAggregateNumber):
         if status == 0:
             print('Код агрегата полный')
             message = f'Код агрегата валиден'
+            message = f'Код агрегата валиден'
             resolution = True
         else:
             print('Код агрегата не считан на линии')
             message = f'Код агрегата не считан на линии'
+            message = f'Код агрегата не считан на линии'
             resolution = False
     else:
         print('Код агрегата не найден')
-        message = f'Отсканирован неверный код'
+        message = f'Отсканирован не верный код'
         resolution = False
 
+    resolutionDict['resolution'] = resolution
+    resolutionDict['msg'] = message
+    return resolutionDict
     resolutionDict['resolution'] = resolution
     resolutionDict['msg'] = message
     return resolutionDict
@@ -474,6 +508,7 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         выгружает все аггрегаты в этом файле
         проверяет на дублирование
         добавляет новый аггрегат в файл"""
+    joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
     print(f'Это код агрегата - {aggregeteNumber}')
     print(f'Это номер паллета - {palletNumber}')
     joined_path = os.path.join('palletFiles', f'{curTaskNumber}.json')
@@ -488,6 +523,7 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         aggregateInDB(curTaskNumber, palletNumber, aggregeteNumber)
 
         with open(joined_path, 'r') as file:
+        with open(joined_path, 'r') as file:
             jsonFile = file.read()
 
         dictFile = json.loads(jsonFile)
@@ -496,9 +532,8 @@ def saveAggregate(aggregeteNumber, palletNumber, curTaskNumber):
         print(dictFile)
 
         with open(joined_path, 'w') as file:
+        with open(joined_path, 'w') as file:
             json.dump(dictFile, file)
-
-
 
     else:
         #print(f'файл с номером {palletNumber} не существует')
