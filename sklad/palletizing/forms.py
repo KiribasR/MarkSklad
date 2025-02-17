@@ -9,7 +9,9 @@ class PalletTaskForm(ModelForm):
 
         widgets = {
             "taskField": forms.Textarea(attrs={
-                'readonly': 'true'
+                'readonly': 'true',
+                'rows': '1',
+                'cols': '30'
             })
         }
 
@@ -23,10 +25,13 @@ class PalletForm(ModelForm):
             "palletField": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Код паллета',
+                
                 'autofocus': 'true'
             }),
             "taskField": forms.Textarea(attrs={
-                    'readonly': 'true'
+                    'readonly': 'true',
+                    'rows': '1',
+                    
              }),
             "curPallet": forms.Textarea(attrs={
                     'readonly': 'true'
@@ -58,9 +63,12 @@ class AggregateForm(ModelForm):
                 'autofocus': 'true'
             }),
             "pallet": forms.Textarea(attrs={
-                'readonly': 'true'
+                'readonly': 'true',
+                    'rows': '1'
+                
             }),
             "task": forms.Textarea(attrs={
-                'readonly': 'true'
+                'readonly': 'true',
+                    'rows': '1'
         })
         }

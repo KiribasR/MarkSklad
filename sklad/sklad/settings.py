@@ -62,7 +62,8 @@ SECRET_KEY = 'django-insecure-%qa+0l1f$g-)wm@6fab-*051(w+ll)u-=@ol9#3(b+654e5u8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78', '192.168.1.48']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.4.78', '192.168.1.48', '10.0.4.80', '192.168.0.109']
+
 
 
 # Application definition
@@ -79,6 +80,7 @@ INSTALLED_APPS = [
     'tsd',
     'palletizing',
     'modifying',
+    'search',
 ]
 
 MIDDLEWARE = [

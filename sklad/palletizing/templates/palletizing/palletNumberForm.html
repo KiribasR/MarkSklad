@@ -3,7 +3,7 @@
 
 {% block title %} PalletizingField {% endblock %}
 {% block head %}
-    <div class="logo">
+    <div class="logo_head">
         <h1>Начальный код паллета</h1>
     </div>
 
@@ -12,15 +12,17 @@
 {% block content %}
 
     <h5>Добавить всплывающее окно если код не найден или уже в работе</h5>
-    <form action="{% url 'palletizing:newPalletField' %}"  method="post">
+    <div class="empty"> <form action="{% url 'palletizing:newPalletField' %}"  method="post">
         {% csrf_token %}<br>
-        {{ form.taskField }}<br>
+        <h4 class="par_2">Открыт документ №</h4>
+        <div class="hide_text_area"> {{ form.taskField }}<br></div>
         {{ form.palletField }}<br>
+        <h4 class="par_3">Для начала работы отсканируйте код паллета</h4>
         <h4>здесь надо поставить картинку линейного кода со сканером</h4>
 
-        <button type="submit" name="confirm">Подтвердить паллет</button>
+        <button type="submit" name="confirm" class="hide_btn"></button>
         <br>
-        <button type="submit" name="complete">Завершить задание</button>
+        <button type="submit" name="complete" class="submit_btn">Завершить задание</button>
     </form>
-
+    </div>
 {% endblock %}

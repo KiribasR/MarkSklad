@@ -3,7 +3,7 @@
 
 {% block title %} Order {% endblock %}
 {% block head %}
-    <div class="logo">  
+    <div class="logo_head">  
 
         <h1>Доступные задания на линии</h1><br>
         <h1>{{ NameLine }}</h1>
@@ -12,27 +12,29 @@
 
 {% endblock %}
 {% block content %}
-
+    <div class="task_create_frm"> 
     <!--Кнопка создания задания для линии-->
-    <form  action="{% url 'palletizing:palletField' %}" method="post">
-        {% csrf_token %}<br>
-        {{ form.taskField }}<br>
-        <button type="submit" name="create">Создать</button>
-    </form>
-
+        <form  action="{% url 'palletizing:palletField' %}" method="post">
+            {% csrf_token %}<br>
+            <div class="text_area_task_create"> {{ form.taskField }} </div> <br>
+            <button type="submit" class="btn btn-primary" name="create">Создать</button>
+        </form>
+    </div>
 
     <!--Здесь будет список заданий-->
+    
+        <h4 class="par_2">Последние созданные задания </h4>
+        <hr>
+    
     <div class="button-block">
-        <h4>Последние созданные задания </h4>
-    </div>
-    {% for k in Batch %}
+    {% for k, v in Batch.items %}
 
-        <div class="button-block">
-            <a href = "{% url 'palletizing:startPalleting' k %}" class="btn btn-info">
+
+            <a href = "{% url 'palletizing:startPalleting' k %}" class="btn btn-light">
                 <h5>{{ k }}</h5>
-                <h5>Возможно добавим наименование продукта</h5>
+                <h4>{{ v }}</h4>
             </a><br>
-        </div>
+        
     {% endfor %}
-
+    </div>
 {% endblock %}

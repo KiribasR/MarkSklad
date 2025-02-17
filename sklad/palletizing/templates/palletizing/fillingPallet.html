@@ -1,30 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>creatingPallet</title>
-</head>
-<body>
+{% extends 'tsd/base_2.html' %}
+{% load static %}
+
+{% block title %} creatingPallet {% endblock %}
+{% block head %}
+    <div class="logo_head">
+        <h1>Паллетирование</h1>
+    </div>
+
+{% endblock %}
+{% block content %}
+
     <h5>Добавить всплывающее окно если код не найден или неполный</h5>
     <h5>Старница просто обновляется без записи</h5><br>
     <form action="{% url 'palletizing:aggregateField' %}"  method="post">
-        {% csrf_token %}<br>
-        {{ form.task }}<br>
-        {{ form.pallet }}<br>
+        {% csrf_token %}
+        <div class="main_head"> 
+            <div class="main_head_left">
+                <h4 class="par_2">Открыт документ №</h4>
+                <div class="hide_text_area">{{ form.task }}<br></div>
+                <hr>
+                <h4 class="par_2">Укладка паллета №</h4>
+                <div class="hide_text_area">{{ form.pallet }}<br></div>
+            </div>
+            <div class="counter">
+                <p class="lcd-display">{{ counter }}</p>
+            </div>
+        </div>
         {{ form.aggregateField }}<br>
+        <div class="kitu_list">
+            <ol>
+                {% for i in code|slice:"::-1" %}
+                <li>{{ i }}</li>
+                {% endfor %}
+            </ol>
+        </div>
 
-        <ol>
-            {% for i in code|slice:"::-1" %}
-               <li>{{ i }}</li>
-            {% endfor %}
-        </ol>
-
-
-        <button type="submit" name="write">Записать</button>
+        <button type="submit" name="write" class="hide_btn"></button>
         <br>
-        <button type="submit" name="complete">Завершить паллет</button>
-        <br>
-        <button type="submit" name="disband">Расформировать паллет</button>
+        <div class="btn_block_row">
+            <button type="submit" name="complete" class="complete_btn">Завершить<br /> паллет</button>
+        
+            <button type="submit" name="disband" class="cancel_btn">Расформировать<br /> паллет</button></div>
     </form>
-</body>
-</html>
+{% endblock %}

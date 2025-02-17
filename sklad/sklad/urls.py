@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('tsd.urls', namespace='tsd')),
     path('palletizing/', include('palletizing.urls', namespace='pallet')),
     path('modifying/', include('modifying.urls', namespace='modify')),
+    path('search/', include('search.urls', namespace='search')),
     path('', include('pwa.urls')),
 ]

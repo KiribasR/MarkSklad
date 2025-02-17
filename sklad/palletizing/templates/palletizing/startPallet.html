@@ -3,22 +3,23 @@
 
 {% block title %} Beginning Pallet {% endblock %}
 {% block head %}
-    <div class="logo">
+    <div class="logo_head">
         <h1>Начало работы</h1><br>
     </div>
 {% endblock %}
 
 {% block content %}
     <!--Здесь будет список заданий-->
-
-        <h4> Подтвердите начало работы </h4>
+    <div class="task_create_frm">
+        <h4 class="par_1"> Выбрано задание: </h4>
 
         <!--Кнопка создания задания для линии-->
         <form  action="{% url 'palletizing:palletField' %}" method="post">
-            {% csrf_token %}<br>
-            {{ form.taskField }}<br>
-            <button type="submit" name="resume">Продолжить задание</button>
+            {% csrf_token %}
+            <div class="hide_text_area"> {{ form.taskField }}<br></div>
+            <button type="submit" name="resume" class="btn btn-primary">Продолжить задание</button>
             <br>
 
         </form>
+    </div>
 {% endblock %}

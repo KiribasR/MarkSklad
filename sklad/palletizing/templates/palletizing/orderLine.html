@@ -3,7 +3,7 @@
 
 {% block title %} Order {% endblock %}
 {% block head %}
-    <div class="logo">  
+    <div class="logo_head">  
 
         <h1>Доступные задания на линии</h1><br>
         <h1>{{ NameLine }}</h1>
@@ -13,18 +13,29 @@
 {% endblock %}
 {% block content %}
     <!--Здесь будет список заданий-->
-    <div class="button-block">
+    
         <h4>Выберите задание </h4>
-    </div>
+    
+    <div class="button-block">
     {% for k in Batch %}
-        <div class="button-block">
-            <div class="btn-link-mini">
+        
+            <div class="btn-link">
+                <a href = "{% url 'palletizing:startPalleting' %}" class="btn btn-info">
+
+                        <h5>{{ k }}</h5>
+                </a>
+            </div>
+        
+    {% endfor %}
+    {% for k in Batch %}
+        
+            <div class="btn-link">
                 <a href = "{% url 'palletizing:startPalleting' %}" class="btn btn-info">
 
                         <h5>{{ k }}</h5>
                 </a><br>
             </div>
-        </div>
+        
     {% endfor %}
-
+    </div>
 {% endblock %}

@@ -75,6 +75,11 @@ ul li {
   padding: 1%;
 
 }
+
+.logo_head h1{
+  color: rgb(46, 96, 121);
+
+}
 .logo{
   display: flex;
 
@@ -88,30 +93,28 @@ ul li {
 /*  тело страницы*/
 body{
   background-image: linear-gradient(
-    35deg,
-    hsl(240deg 72% 59%) 0%,
-    hsl(213deg 100% 48%) 4%,
-    hsl(207deg 100% 50%) 9%,
-    hsl(201deg 100% 49%) 16%,
-    hsl(194deg 100% 47%) 23%,
-    hsl(187deg 100% 45%) 33%,
-    hsl(181deg 65% 61%) 44%,
-    hsl(171deg 66% 63%) 57%,
-    hsl(158deg 66% 68%) 70%,
-    hsl(137deg 62% 73%) 81%,
-    hsl(102deg 62% 74%) 89%,
-    hsl(76deg 65% 70%) 95%,
-    hsl(55deg 73% 69%) 100%
+    45deg,
+    hsl(198deg 41% 25%) 0%,
+    hsl(199deg 32% 32%) 14%,
+    hsl(199deg 25% 40%) 29%,
+    hsl(195deg 22% 48%) 43%,
+    hsl(193deg 23% 56%) 57%,
+    hsl(193deg 29% 64%) 71%,
+    hsl(193deg 39% 73%) 86%,
+    hsl(192deg 56% 81%) 100%
   );
-  display: flex; /*  делает элементы блочными*/
-  flex-direction: column; /* располагает блоки основного контента в колонку */
-  height: 100vh;
+  /* располагает блоки основного контента в колонку */
+  
 }
 /*  нижнее блок для размещения в нем навигации*/
 
 /*основной контент  */
-.main-content{
-  min-height: 82vh; /*  вытягивает на всю высоту экрана*/
+main{
+  min-height: 82vh;
+  display: flex; /*  делает элементы блочными*/
+  flex-grow: 1;
+  flex-direction: column; 
+  margin-bottom: 8vh;/*  вытягивает на всю высоту экрана*/
 }
 /* Заголовок страниц */
 .header-title h1{
@@ -130,8 +133,7 @@ body{
   bottom: 0; 
   width: 100%;
   height: 8vh;
-  
-  
+    
 }
 
 /* Стиль ссылок внутри панели навигации */
@@ -176,12 +178,7 @@ body{
  font-size: 30px;
 }
 
-/*  для теста*/
-.loger textarea {
-  min-width: 700px;
-  min-height: 400px;
-  
-}
+
 /*  таблица вывода результата*/
 .search-result{
   font-size: 40px;
@@ -244,16 +241,17 @@ body{
   border-radius: 25px;
 }
 
-/* стиль кнопок внутри сериализация.типография */
+/* стиль кнопок выбора линии */
 .btn-link-mini{
   margin:20px;
   vertical-align: center;
   
-/* стиль кнопок внутри сериализация.типография */ 
+  
+/* стиль кнопок выбора линии */ 
 }
 .btn-link-mini a{
-  height: 150px;
-  width: 96%;
+  height: 400px;
+  width: 76%;
   font-size: 40px;
   text-align: left;
   background-image: url('../icons/scaner_grey.png');
@@ -263,14 +261,56 @@ body{
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 20px;
+  
+}
+.btn-link-mini h5{
+  font-size: 40px;
+}
+/* зеленый статус внутри кнопки */ 
+.green{
+  height: 60px;
+  width: 250px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  background-color: #27f067cd;
+  margin-top: 20px;
+  border-radius: 25px;
+}
+/* красный статус внутри кнопки */ 
+.red{
+  height: 60px;
+  width: 250px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  background-color: #f02727cd;
+  margin-top: 20px;
+  border-radius: 25px;
+ 
+}
+/* наименования полей внутри кнопки */ 
+.field_name{
+  font-size: 30px;
+  color: rgb(99, 99, 99);
+}
+.btn-link-mini p{
+  margin: 0%;
 }
 /* стиль счетчика */
+.counter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30%;
+  
+}
 .counter p{
   display:flex;
   height: 250px;
   width: 95%;
   border: solid 2px;
-  border-color: #2f1fe4;
+  border-color: #0c78d7;
   border-radius: 15px;
   padding: 10px 10px;
   margin: 1%;
@@ -278,19 +318,22 @@ body{
   font-size: 60px;
   font-weight: 700;
   align-items: center;
+  justify-content: center
 }
 
 .lcd-display{
   font-family: 'MOSCOW2024';
   font-size: 100px;
   padding-left: 30px;
+  
+  align-items: center;
 }
 .lcd-display input{
   text-align: right;
   max-width: 350px;
   border-radius: 25px;
 }
-
+/* блок "разработано специально для..." */
 .developer{
   display: flex;
   max-width: 100%;
@@ -369,6 +412,181 @@ body{
 
 .alert .btn-close:hover {
     color: #ccc; /* Светлый оттенок при наведении */
+}
+
+/* рамка вокруг формы создания задания на палетирование */
+.task_create_frm{
+  height: 230px;
+  width: 95%;
+  
+  background-image: url('../icons/new_file.png');
+  
+  background-color: #63c4f56b;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 30px;
+  margin:20px;
+  padding-left: 25px;
+  
+
+}
+.text_area_task_create textarea{
+  max-width: 80%;
+  font-size: 40px;
+  color:#1f7be4;
+  font-weight: 700;
+  border-radius: 20px;
+  padding-left: 10px;
+}
+
+
+.hide_text_area textarea{
+  max-width: 80%;
+  font-size: 40px;
+  color:#1f7be4;
+  font-weight: 700;
+  border-radius: 20px;
+  padding-left: 10px;
+  background-color: transparent;
+  border: none;
+
+}
+.btn-primary{
+  font-size: 40px;
+  border-radius: 20px;
+  background-image: url('../icons/check.png');
+  background-size: 50px 50px;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-left: 50px;
+}
+
+.btn-light{
+  font-size: 40px;
+  border-radius: 15px;
+  background-color: #1f9ce4;
+
+}
+.btn-light h5{
+  font-size: 32px;
+  font-weight: 700;
+}
+.btn-light h4{
+  font-size: 24px;
+  
+}
+.par_1{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  padding-left: 5px;
+}
+.par_2{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  padding-left: 25px;
+}
+.par_3{
+  font-size: 40px;
+  font-weight: 500;
+  color: rgb(193, 95, 95);
+  padding-left: 25px;
+}
+
+.hide_btn{
+  background-color: transparent;
+  border: none;
+}
+
+.empty{
+  padding-left: 25px;
+}
+
+.submit_btn{
+  background-color: #1f7be4;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  padding: 25px;
+}
+.btn_block_row{
+  display: flex; 
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;
+  padding: 15px;
+
+}
+.complete_btn{
+  background-color: rgb(25, 192, 84);
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  margin: 25px;
+  width: 100%;
+}
+
+.cancel_btn{
+  background-color: #e4461f;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  border-radius: 15px;
+  border: #1f7be4;
+  margin: 25px;
+}
+
+.kitu_list{
+  padding-left: 25px;
+  font-size: 24px;
+  font-weight: 700;
+}
+ol {
+  
+  padding: 0;
+  margin: 0;
+  
+  width: 100%;
+  max-width: 600px;
+ 
+}
+
+/* Стили для элементов списка */
+ol li {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Чередование цвета фона */
+ol li:nth-child(odd) {
+  background-color: #f9f9f97d; /* Цвет для нечетных строк */
+}
+
+ol li:nth-child(even) {
+  background-color: #e9e9e978; /* Цвет для четных строк */
+}
+
+/* Убираем границу у последнего элемента */
+ol li:last-child {
+  border-bottom: none;
+}
+.main_head{
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+}
+.main_head_left{
+  max-width: 70%;
 }
 /* скрытие иконок при малом разрешении */
 @media screen and (max-width: 500px) {

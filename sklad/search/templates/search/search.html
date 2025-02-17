@@ -1,0 +1,26 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Поиск {% endblock %}
+
+{% block head %}
+<div class="logo">  
+    <img src="{% static 'main\icons\search_black.png' %}">
+    <h1>Поиск</h1> 
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+    
+    <form action="searchresult"  method="post">
+        {% csrf_token %}<br>
+        {{ form.searchField }}<br>
+        
+    </form>
+    <!--<div class="search-btn"> 
+        <a href="{% url 'tsd:index' %}" class="url-btn-gray">Завершить</a>
+        <button class="btn-blue" type="submit">Поиск</button>
+        </div>-->
+{% endblock %}

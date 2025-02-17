@@ -3,7 +3,7 @@
 
 {% block title %} Pallet {% endblock %}
 {% block head %}
-    <div class="logo">  
+    <div class="logo_head">  
 
         <h1>Паллетирование</h1>
     </div>
@@ -11,18 +11,30 @@
 {% endblock %}
 {% block content %}
     <!--Здесь будет список линий-->
+    
+    <h4 class="par_2">Выберите линию для работы</h4>
+    
     <div class="button-block">
-        <h4>Выберите линию для работы</h4>
-    </div>
     {% for val in data %}
-        <div class="button-block">
+        
             <div class="btn-link-mini">
-                <a href = "{% url 'palletizing:orderLine' val %}" class="btn btn-info">
+                <a href = "{% url 'palletizing:orderLine' val %}" class="btn btn-light">
                     {% for k, v in val.items %}
-                        <h5>{{ v }}</h5>
-                    {% endfor %}</a><br>
+                        <p class="field_name">{{ k }}</p>
+                        {% if v == 'Доступна' %}
+                            
+                            <div class="green"><p>{{ v }}</p></div>
+                        {% elif v == 'Недоступна' %}
+                            
+                            <div class="red"><p>{{ v }}</p></div>
+                        {% else %}
+                            
+                            <p>{{ v }}</p>
+                        {% endif %}
+                        
+                    {% endfor %}</a>
             </div>
-        </div>
+        
     {% endfor %}
-
+    </div>
 {% endblock %}
