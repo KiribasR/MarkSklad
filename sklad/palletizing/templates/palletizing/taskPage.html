@@ -27,13 +27,13 @@
         <hr>
     
     <div class="button-block">
-    {% for k in Batch %}
+    {% for k, v in Batch.items %}
 
         
             <a href = "{% url 'palletizing:startPalleting' k %}" class="btn btn-light">
                 <h5>{{ k }}</h5>
-                <h4>Возможно добавим наименование продукта</h4>
-            </a><br>
+                <h4>{{ v }}</h4>
+            </a><br><br>
         
     {% endfor %}
     </div>

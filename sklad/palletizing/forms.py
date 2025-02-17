@@ -25,7 +25,6 @@ class PalletForm(ModelForm):
             "palletField": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Код паллета',
-                
                 'autofocus': 'true'
             }),
             "taskField": forms.Textarea(attrs={
@@ -34,7 +33,8 @@ class PalletForm(ModelForm):
                     
              }),
             "curPallet": forms.Textarea(attrs={
-                    'readonly': 'true'
+                    'readonly': 'true',
+                    'rows': '1',
              })
         }
 

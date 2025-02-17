@@ -251,13 +251,9 @@ def searchAggNumber(searchData):
     
     if data[0][5] == None:
         pallet_number = '-'
-    else:
-        pallet_number = data[0][5]
-
+        
     if data[0][6] == None:
         uuid_pallet = '-'
-    else:
-        uuid_pallet = data[0][6]
 
     if len(data) != 0:
         dictBatch = {'code': searchData,

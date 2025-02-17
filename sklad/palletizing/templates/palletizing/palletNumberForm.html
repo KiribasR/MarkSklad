@@ -1,3 +1,32 @@
+<script>
+    // Функция для автоматического закрытия сообщений
+    document.addEventListener('DOMContentLoaded', function () {
+        const alerts = document.querySelectorAll('.alert');
+    
+        alerts.forEach(function (alert) {
+            // Устанавливаем таймер на 2 секунды для скрытия сообщения
+            setTimeout(() => {
+                alert.style.opacity = '0'; // Анимация исчезновения
+                setTimeout(() => {
+                    alert.style.display = 'none'; // Удаление элемента из DOM
+                }, 300); // Задержка для завершения анимации
+            }, 2000); // Время ожидания перед началом исчезновения (2 секунды)
+        });
+    
+        // Закрытие сообщения при клике на кнопку
+        const closeButtons = document.querySelectorAll('.alert .btn-close');
+        closeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const alert = button.parentElement;
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 300);
+            });
+        });
+    });
+    
+</script>
 {% extends 'tsd/base.html' %}
 {% load static %}
 
@@ -11,18 +40,32 @@
 
 {% block content %}
 
-    <h5>Добавить всплывающее окно если код не найден или уже в работе</h5>
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
     <div class="empty"> <form action="{% url 'palletizing:newPalletField' %}"  method="post">
-        {% csrf_token %}<br>
-        <h4 class="par_2">Открыт документ №</h4>
+        {% csrf_token %}
+        
+        <h4 class="par_1">Открыт документ №</h4>
         <div class="hide_text_area"> {{ form.taskField }}<br></div>
         {{ form.palletField }}<br>
         <h4 class="par_3">Для начала работы отсканируйте код паллета</h4>
-        <h4>здесь надо поставить картинку линейного кода со сканером</h4>
-
+        <div class="class=aligncenter">
+            <img src= "{% static '\main\icons\scaner.png' %}"/>
+        </div>    
         <button type="submit" name="confirm" class="hide_btn"></button>
         <br>
         <button type="submit" name="complete" class="submit_btn">Завершить задание</button>
     </form>
     </div>
+
+    
 {% endblock %}

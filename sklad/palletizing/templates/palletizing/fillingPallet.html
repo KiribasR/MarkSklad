@@ -1,3 +1,32 @@
+<script>
+    // Функция для автоматического закрытия сообщений
+    document.addEventListener('DOMContentLoaded', function () {
+        const alerts = document.querySelectorAll('.alert');
+    
+        alerts.forEach(function (alert) {
+            // Устанавливаем таймер на 2 секунды для скрытия сообщения
+            setTimeout(() => {
+                alert.style.opacity = '0'; // Анимация исчезновения
+                setTimeout(() => {
+                    alert.style.display = 'none'; // Удаление элемента из DOM
+                }, 300); // Задержка для завершения анимации
+            }, 2000); // Время ожидания перед началом исчезновения (2 секунды)
+        });
+    
+        // Закрытие сообщения при клике на кнопку
+        const closeButtons = document.querySelectorAll('.alert .btn-close');
+        closeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const alert = button.parentElement;
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 300);
+            });
+        });
+    });
+    
+</script>
 {% extends 'tsd/base_2.html' %}
 {% load static %}
 
@@ -9,9 +38,17 @@
 
 {% endblock %}
 {% block content %}
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-    <h5>Добавить всплывающее окно если код не найден или неполный</h5>
-    <h5>Старница просто обновляется без записи</h5><br>
     <form action="{% url 'palletizing:aggregateField' %}"  method="post">
         {% csrf_token %}
         <div class="main_head"> 
@@ -23,7 +60,7 @@
                 <div class="hide_text_area">{{ form.pallet }}<br></div>
             </div>
             <div class="counter">
-                <p class="lcd-display">25</p>
+                <p class="lcd-display">{{ counter }}</p>
             </div>
         </div>
         {{ form.aggregateField }}<br>

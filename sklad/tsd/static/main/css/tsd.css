@@ -90,7 +90,7 @@ ul li {
   margin: 10px
 }
 
-/*  тело страницы*/
+/*  градиент заливки тело страницы*/
 body{
   background-image: linear-gradient(
     45deg,
@@ -103,7 +103,7 @@ body{
     hsl(193deg 39% 73%) 86%,
     hsl(192deg 56% 81%) 100%
   );
-  /* располагает блоки основного контента в колонку */
+  
   
 }
 /*  нижнее блок для размещения в нем навигации*/
@@ -154,14 +154,14 @@ main{
   color: black;
 }
 
-/* Добавить цвет для активной/текущей ссылки активируется скриптов в head */
+/* Добавить цвет для активной/текущей ссылки активируется скриптом в head */
 .bottom-nav a.active {
   font-size: 35px;
   color: #5983fc;
 }
 /* класс выравнивания по центру */
 .aligncenter img{
-  text-align: center;
+  justify-content: center;
 }
 
 /* размер иконок в навигации */
@@ -379,7 +379,7 @@ main{
     border: 2px solid transparent;
     border-radius: 10px; /* Скругление углов */
     font-family: Arial, sans-serif;
-    font-size: 18pt;
+    font-size: 40pt;
     color: white;
     opacity: 0.9; /* Полупрозрачность */
     position: relative;
@@ -431,6 +431,7 @@ main{
   
 
 }
+/* стилизация text area под обычный текст на странице */
 .text_area_task_create textarea{
   max-width: 80%;
   font-size: 40px;
@@ -451,6 +452,7 @@ main{
   background-color: transparent;
   border: none;
 
+/* Кнопка с зеленой галочкой */
 }
 .btn-primary{
   font-size: 40px;
@@ -461,7 +463,7 @@ main{
   background-repeat: no-repeat;
   padding-left: 50px;
 }
-
+/* редактирование светлой кнопки bs */
 .btn-light{
   font-size: 40px;
   border-radius: 15px;
@@ -476,6 +478,7 @@ main{
   font-size: 24px;
   
 }
+/* Стилизация текста на странице с разными параграфами */
 .par_1{
   font-size: 40px;
   font-weight: 500;
@@ -487,6 +490,7 @@ main{
   font-weight: 500;
   color: rgb(99, 99, 99);
   padding-left: 25px;
+  min-width: 50%;
 }
 .par_3{
   font-size: 40px;
@@ -494,7 +498,7 @@ main{
   color: rgb(193, 95, 95);
   padding-left: 25px;
 }
-
+/* делает кнопки невидимыми */
 .hide_btn{
   background-color: transparent;
   border: none;
@@ -541,7 +545,7 @@ main{
   border: #1f7be4;
   margin: 25px;
 }
-
+/* стилизация списка групповых кодов под таблицу */
 .kitu_list{
   padding-left: 25px;
   font-size: 24px;

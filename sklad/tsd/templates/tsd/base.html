@@ -35,10 +35,10 @@
 <footer>
     <div class="footer-container">
         <nav class="bottom-nav">
-            <a href="{% url 'tsd:index' %}" ><img class="icons" src="{% static 'main/icons/search.png' %}"> На главную</a>
-            <a href="#search"><img class="icons" src="{% static 'main/icons/db_insert.png' %}">Поиск</a>
-            <a href="{% url 'palletizing:mainPallet' %}"><img class="icons" src="{% static 'main/icons/db_insert.png' %}">Паллетирование</a>
-            <a href="#edit"><img class="icons" src="{% static 'main/icons/agregate.png' %}">Редактирование</a>
+            <a href="{% url 'tsd:index' %}" ><img class="icons" src="{% static 'main/icons/home.png' %}"> На главную</a>
+            <a href="{% url 'search:search' %}"><img class="icons" src="{% static 'main/icons/search.png' %}">Поиск</a>
+            <a href="{% url 'palletizing:mainPallet' %}"><img class="icons" src="{% static 'main/icons/agregate.png' %}">Паллетирование</a>
+            <a href="#edit"><img class="icons" src="{% static 'main/icons/db_insert.png' %}">Редактирование</a>
 
         </nav>
     </div>

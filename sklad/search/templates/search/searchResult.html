@@ -1,0 +1,50 @@
+{% extends 'tsd/base.html' %}
+{% load static %}
+
+{% block title %} Результат поиска {% endblock %}
+{% block head %}
+    <div class="logo">  
+        <img src="{% static 'main\icons\search_black.png' %}">
+        <h1>Результат поиска</h1> 
+    </div>
+
+{% endblock %}
+{% block content %}
+    <div class="search-result"> 
+       
+         <form action="#"  method="post">
+        {% csrf_token %}
+        {{ form.searchField }}
+        
+		</form>
+    
+        <table class="table">
+        {% for key, value in resultData.items %}
+            <thead class="table-head">
+                <tr>
+                    <th>{{ key }}</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                    <tr scope="row">
+                        
+                        {% if value == 0 %}
+                            <td><p class="status-full">Полный</p></td>
+                        {% elif value == 2 %}
+                            <td><p>Брак</p></td>
+                        {% elif value == 4 %}
+                            <td><p class="status-new">Новый</p></td>
+                        {% elif value == 5 %}
+                            <td><p>Напечатан</p></td>
+                        {% else %}
+                            <td>{{ value }}</td>
+
+                        {% endif %}
+                        
+                    </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+        
+</div>
+{% endblock %}

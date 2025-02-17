@@ -12,12 +12,18 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <form action="{% url 'palletizing:closePallet' %}"  method="post">
         {% csrf_token %}<br>
-        {{ form.taskField }}<br>
-        {{ form.curPallet }}<br>
+        <div class="main_head"> 
+            <div class="main_head_left">
+                <h4 class="par_2">Открыт документ №</h4>
+                <div class="hide_text_area">{{ form.taskField }}<br></div>
+            <hr>
+                <h4 class="par_2">Укладка паллета №</h4>
+                <div class="hide_text_area">{{ form.curPallet }}<br></div>
         {{ form.palletField }}<br>
+        </div>
         <h4>здесь надо поставить картинку линейного кода со сканером</h4>
     </form>
 

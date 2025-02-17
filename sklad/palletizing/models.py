@@ -14,7 +14,7 @@ class PalletTask(models.Model):
 
 
 class PalletCode(models.Model):
-    palletField = models.CharField('Код паллета', max_length=40)
+    palletField = models.CharField('Код паллета', max_length=40,blank=True)
     taskField = models.CharField('Код паллета', max_length=50, blank=True)
     curPallet = models.CharField('Код паллета', max_length=50, blank=True)
 
@@ -27,7 +27,7 @@ class PalletCode(models.Model):
 
 
 class AggregateCode(models.Model):
-    aggregateField = models.CharField('Код агрегата', max_length=50)
+    aggregateField = models.CharField('Код агрегата', max_length=50,blank=True)
     pallet = models.CharField('Код паллета', max_length=50, blank=True)
     task = models.CharField('Код паллета', max_length=50, blank=True)
 
